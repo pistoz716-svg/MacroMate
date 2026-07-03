@@ -1,0 +1,20 @@
+MacroMate/
+│
+├── index.html
+├── package.json
+├── README.md
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   ├── app.js
+│   ├── macroCalculator.js
+│   └── mealPlanner.js
+│
+└── data/
+    └── foods.js
+
+
+
+cd /d D:\APPS\APPS\MacroMate

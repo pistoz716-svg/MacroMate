@@ -1,0 +1,13 @@
+{
+  "name": "macromate",
+  "version": "1.0.0",
+  "description": "Simple macro counter, adjuster, and meal planner.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
