@@ -1,20 +1,46 @@
 MacroMate/
 │
 ├── index.html
-├── package.json
 ├── README.md
+├── CHANGELOG.md
+├── package.json
 │
 ├── css/
 │   └── style.css
 │
+├── data/
+│   ├── foods.js
+│   ├── recipes.js
+│   └── groceryCategories.js
+│
 ├── js/
 │   ├── app.js
 │   ├── macroCalculator.js
-│   └── mealPlanner.js
+│   ├── mealPlanner.js
+│   ├── grocery.js
+│   ├── pantry.js
+│   └── shopping.js
 │
-└── data/
-    └── foods.js
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── ROADMAP.md
+│   ├── TESTING.md
+│   └── DEPLOYMENT.md
+│
+└── assets/
+    ├── screenshots/
+    └── icons/
 
 
 
 cd /d D:\APPS\APPS\MacroMate
+
+
+
+
+
+git config --global user.name "Fredrick Johnson IV"
+git config --global user.email "pistoz716@gmail.com"
+
+
+2CED-8501
