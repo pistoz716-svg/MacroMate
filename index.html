@@ -14,119 +14,197 @@
     <p>Macro counter, weight goal calculator, meal generator, multi-day planner, and grocery list.</p>
   </header>
 
+  <nav class="app-tabs">
+    <button class="tab-btn active" type="button" data-page="dashboardPage">Dashboard</button>
+    <button class="tab-btn" type="button" data-page="goalsPage">Goals</button>
+    <button class="tab-btn" type="button" data-page="mealsPage">Meals</button>
+    <button class="tab-btn" type="button" data-page="groceryPage">Grocery</button>
+    <button class="tab-btn" type="button" data-page="profilePage">Profile</button>
+  </nav>
+
   <main class="container">
-    <section class="card">
-      <h2>Your Goal</h2>
 
-      <label for="weight">Current Weight</label>
-      <input id="weight" type="number" placeholder="Enter current weight" min="1" />
-
-      <label for="goalWeight">Goal Weight</label>
-      <input id="goalWeight" type="number" placeholder="Enter goal weight" min="1" />
-
-      <label for="unit">Unit</label>
-      <select id="unit">
-        <option value="lbs">lbs</option>
-        <option value="kg">kg</option>
-      </select>
-
-      <label for="goal">Goal Type</label>
-      <select id="goal">
-        <option value="auto">Auto Based On Goal Weight</option>
-        <option value="gain">Gain Weight</option>
-        <option value="cut">Lose Fat</option>
-        <option value="maintain">Maintain</option>
-      </select>
-
-      <label for="activity">Activity Level</label>
-      <select id="activity">
-        <option value="low">Low</option>
-        <option value="moderate" selected>Moderate</option>
-        <option value="high">High</option>
-      </select>
-
-      <button id="calculateBtn" type="button">Calculate Macros</button>
-    </section>
-
-    <section class="card">
-      <h2>Daily Macro Targets</h2>
-
-      <div class="macro-grid">
-        <div><h3 id="calories">0</h3><p>Calories</p></div>
-        <div><h3 id="protein">0g</h3><p>Protein</p></div>
-        <div><h3 id="carbs">0g</h3><p>Carbs</p></div>
-        <div><h3 id="fat">0g</h3><p>Fat</p></div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Meal Logger</h2>
-
-      <label for="foodSelect">Choose Food</label>
-      <select id="foodSelect"></select>
-
-      <label for="servings">Servings</label>
-      <input id="servings" type="number" value="1" min="0.25" step="0.25" />
-
-      <button id="addFoodBtn" type="button">Add Food</button>
-
-      <ul id="mealList"></ul>
-    </section>
-
-    <section class="card">
-      <h2>Remaining Macros</h2>
-
-      <div class="macro-grid">
-        <div><h3 id="remainingCalories">0</h3><p>Calories Left</p></div>
-        <div><h3 id="remainingProtein">0g</h3><p>Protein Left</p></div>
-        <div><h3 id="remainingCarbs">0g</h3><p>Carbs Left</p></div>
-        <div><h3 id="remainingFat">0g</h3><p>Fat Left</p></div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Generate A Meal Plan</h2>
-      <p class="hint">
-        Generate one meal, a full day, or a multi-day plan with grocery support.
-      </p>
-
-      <div class="meal-buttons">
-        <button id="generateBreakfastBtn" type="button">Breakfast</button>
-        <button id="generateLunchBtn" type="button">Lunch</button>
-        <button id="generateSnackBtn" type="button">Snack</button>
-        <button id="generateDinnerBtn" type="button">Dinner</button>
-        <button id="generatePlanBtn" type="button">Full Day</button>
-      </div>
-
-      <label for="planLength">Meal Plan Length</label>
-      <select id="planLength">
-        <option value="7">7 Days</option>
-        <option value="14">14 Days</option>
-        <option value="30">30 Days</option>
-        <option value="90">90 Days</option>
-      </select>
-
-      <button id="generateMultiDayPlanBtn" type="button">Generate Multi-Day Plan</button>
-
-      <div id="mealPlan"></div>
-
-      <div class="saved-plan-box">
-        <h3>Today's Saved Meal Plan</h3>
-
-        <div id="savedMeals"></div>
-
-        <div id="savedTotals" class="day-total-box">
-          No meals saved yet.
+    <section id="dashboardPage" class="page active-page">
+      <section class="card dashboard-hero">
+        <div>
+          <p class="eyebrow">Welcome back</p>
+          <h2>Fuel Your Body. Achieve Your Best.</h2>
+          <p class="hint">Track smarter. Eat better. Stay locked in on your goal.</p>
         </div>
 
-        <div class="saved-action-buttons">
-          <button id="generateGroceryListBtn" type="button">Generate Grocery List</button>
-          <button id="clearSavedMealsBtn" type="button">Clear Saved Meals</button>
+        <div class="dashboard-actions">
+          <button type="button" class="jump-btn" data-page="mealsPage">Generate Meal</button>
+          <button type="button" class="jump-btn" data-page="goalsPage">Update Goals</button>
+          <button type="button" class="jump-btn" data-page="groceryPage">View Grocery List</button>
         </div>
+      </section>
+
+      <section class="card">
+        <h2>Today’s Macro Snapshot</h2>
+
+        <div class="macro-grid">
+          <div><h3 id="dashCalories">0</h3><p>Calories</p></div>
+          <div><h3 id="dashProtein">0g</h3><p>Protein</p></div>
+          <div><h3 id="dashCarbs">0g</h3><p>Carbs</p></div>
+          <div><h3 id="dashFat">0g</h3><p>Fat</p></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Daily Focus</h2>
+        <p class="hint">
+          Calculate your goals, generate meals, save the ones you like, then build your grocery list.
+        </p>
+      </section>
+    </section>
+
+    <section id="goalsPage" class="page">
+      <section class="card">
+        <h2>Your Goal</h2>
+
+        <label for="weight">Current Weight</label>
+        <input id="weight" type="number" placeholder="Enter current weight" min="1" />
+
+        <label for="goalWeight">Goal Weight</label>
+        <input id="goalWeight" type="number" placeholder="Enter goal weight" min="1" />
+
+        <label for="unit">Unit</label>
+        <select id="unit">
+          <option value="lbs">lbs</option>
+          <option value="kg">kg</option>
+        </select>
+
+        <label for="goal">Goal Type</label>
+        <select id="goal">
+          <option value="auto">Auto Based On Goal Weight</option>
+          <option value="gain">Gain Weight</option>
+          <option value="cut">Lose Fat</option>
+          <option value="maintain">Maintain</option>
+        </select>
+
+        <label for="activity">Activity Level</label>
+        <select id="activity">
+          <option value="low">Low</option>
+          <option value="moderate" selected>Moderate</option>
+          <option value="high">High</option>
+        </select>
+
+        <button id="calculateBtn" type="button">Calculate Macros</button>
+      </section>
+
+      <section class="card">
+        <h2>Daily Macro Targets</h2>
+
+        <div class="macro-grid">
+          <div><h3 id="calories">0</h3><p>Calories</p></div>
+          <div><h3 id="protein">0g</h3><p>Protein</p></div>
+          <div><h3 id="carbs">0g</h3><p>Carbs</p></div>
+          <div><h3 id="fat">0g</h3><p>Fat</p></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Meal Logger</h2>
+
+        <label for="foodSelect">Choose Food</label>
+        <select id="foodSelect"></select>
+
+        <label for="servings">Servings</label>
+        <input id="servings" type="number" value="1" min="0.25" step="0.25" />
+
+        <button id="addFoodBtn" type="button">Add Food</button>
+
+        <ul id="mealList"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Remaining Macros</h2>
+
+        <div class="macro-grid">
+          <div><h3 id="remainingCalories">0</h3><p>Calories Left</p></div>
+          <div><h3 id="remainingProtein">0g</h3><p>Protein Left</p></div>
+          <div><h3 id="remainingCarbs">0g</h3><p>Carbs Left</p></div>
+          <div><h3 id="remainingFat">0g</h3><p>Fat Left</p></div>
+        </div>
+      </section>
+    </section>
+
+    <section id="mealsPage" class="page">
+      <section class="card">
+        <h2>Generate A Meal Plan</h2>
+        <p class="hint">
+          Generate one meal, a full day, or a multi-day plan with grocery support.
+        </p>
+
+        <div class="meal-buttons">
+          <button id="generateBreakfastBtn" type="button">Breakfast</button>
+          <button id="generateLunchBtn" type="button">Lunch</button>
+          <button id="generateSnackBtn" type="button">Snack</button>
+          <button id="generateDinnerBtn" type="button">Dinner</button>
+          <button id="generatePlanBtn" type="button">Full Day</button>
+        </div>
+
+        <label for="planLength">Meal Plan Length</label>
+        <select id="planLength">
+          <option value="7">7 Days</option>
+          <option value="14">14 Days</option>
+          <option value="30">30 Days</option>
+          <option value="90">90 Days</option>
+        </select>
+
+        <button id="generateMultiDayPlanBtn" type="button">Generate Multi-Day Plan</button>
+
+        <div id="mealPlan"></div>
+      </section>
+
+      <section class="card">
+        <div class="saved-plan-box">
+          <h3>Today's Saved Meal Plan</h3>
+
+          <div id="savedMeals"></div>
+
+          <div id="savedTotals" class="day-total-box">
+            No meals saved yet.
+          </div>
+
+          <div class="saved-action-buttons">
+            <button id="generateGroceryListBtn" type="button">Generate Grocery List</button>
+            <button id="clearSavedMealsBtn" type="button">Clear Saved Meals</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="groceryPage" class="page">
+      <section class="card">
+        <h2>Grocery List</h2>
+        <p class="hint">
+          Save meals first, then generate a grocery list that supports your macro goals.
+        </p>
+
+        <button id="generateGroceryListBtnAlt" type="button">Generate Grocery List</button>
 
         <div id="groceryList"></div>
-      </div>
+      </section>
     </section>
+
+    <section id="profilePage" class="page">
+      <section class="card">
+        <h2>Profile / Login</h2>
+        <p class="hint">
+          Local profile storage is next. Firebase login will allow users to sync meals and goals across devices.
+        </p>
+
+        <label for="profileName">Name</label>
+        <input id="profileName" type="text" placeholder="Enter your name" />
+
+        <label for="profileEmail">Email</label>
+        <input id="profileEmail" type="email" placeholder="Enter your email" />
+
+        <button id="saveProfileBtn" type="button">Save Profile</button>
+      </section>
+    </section>
+
   </main>
 
   <footer>

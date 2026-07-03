@@ -15,6 +15,10 @@ let consumed = {
 let lastGeneratedMeal = null;
 let savedMeals = JSON.parse(localStorage.getItem("savedMeals")) || [];
 
+const tabButtons = document.querySelectorAll(".tab-btn");
+const jumpButtons = document.querySelectorAll(".jump-btn");
+const pages = document.querySelectorAll(".page");
+
 const weightInput = document.getElementById("weight");
 const goalWeightInput = document.getElementById("goalWeight");
 const unitInput = document.getElementById("unit");
@@ -26,6 +30,11 @@ const caloriesEl = document.getElementById("calories");
 const proteinEl = document.getElementById("protein");
 const carbsEl = document.getElementById("carbs");
 const fatEl = document.getElementById("fat");
+
+const dashCaloriesEl = document.getElementById("dashCalories");
+const dashProteinEl = document.getElementById("dashProtein");
+const dashCarbsEl = document.getElementById("dashCarbs");
+const dashFatEl = document.getElementById("dashFat");
 
 const remainingCaloriesEl = document.getElementById("remainingCalories");
 const remainingProteinEl = document.getElementById("remainingProtein");
@@ -42,13 +51,36 @@ const generateLunchBtn = document.getElementById("generateLunchBtn");
 const generateSnackBtn = document.getElementById("generateSnackBtn");
 const generateDinnerBtn = document.getElementById("generateDinnerBtn");
 const generatePlanBtn = document.getElementById("generatePlanBtn");
+const generateMultiDayPlanBtn = document.getElementById("generateMultiDayPlanBtn");
+const planLengthInput = document.getElementById("planLength");
 const mealPlan = document.getElementById("mealPlan");
 
 const savedMealsEl = document.getElementById("savedMeals");
 const savedTotalsEl = document.getElementById("savedTotals");
 const clearSavedMealsBtn = document.getElementById("clearSavedMealsBtn");
 const generateGroceryListBtn = document.getElementById("generateGroceryListBtn");
+const generateGroceryListBtnAlt = document.getElementById("generateGroceryListBtnAlt");
 const groceryListEl = document.getElementById("groceryList");
+
+const profileNameInput = document.getElementById("profileName");
+const profileEmailInput = document.getElementById("profileEmail");
+const saveProfileBtn = document.getElementById("saveProfileBtn");
+
+function showPage(pageId) {
+  pages.forEach(page => {
+    page.classList.remove("active-page");
+  });
+
+  tabButtons.forEach(button => {
+    button.classList.remove("active");
+  });
+
+  const selectedPage = document.getElementById(pageId);
+  const selectedButton = document.querySelector(`[data-page="${pageId}"]`);
+
+  if (selectedPage) selectedPage.classList.add("active-page");
+  if (selectedButton) selectedButton.classList.add("active");
+}
 
 function loadFoods() {
   foodSelect.innerHTML = "";
@@ -69,6 +101,11 @@ function updateTargetDisplay() {
   proteinEl.textContent = currentTargets.protein + "g";
   carbsEl.textContent = currentTargets.carbs + "g";
   fatEl.textContent = currentTargets.fat + "g";
+
+  dashCaloriesEl.textContent = currentTargets.calories;
+  dashProteinEl.textContent = currentTargets.protein + "g";
+  dashCarbsEl.textContent = currentTargets.carbs + "g";
+  dashFatEl.textContent = currentTargets.fat + "g";
 }
 
 function getRemainingMacros() {
@@ -226,6 +263,7 @@ function bindSaveGeneratedMealButton() {
 function generateMealByType(type) {
   if (currentTargets.calories === 0) {
     alert("Calculate your macros first.");
+    showPage("goalsPage");
     return;
   }
 
@@ -244,89 +282,14 @@ function generateMealByType(type) {
 
   lastGeneratedMeal = meal;
   mealPlan.innerHTML = renderMealCard(meal, true);
+  showPage("mealsPage");
   bindSaveGeneratedMealButton();
 }
 
-calculateBtn.addEventListener("click", () => {
-  const weight = Number(weightInput.value);
-  const goalWeight = Number(goalWeightInput.value || weight);
-
-  if (!weight || weight <= 0) {
-    alert("Please enter your current weight.");
-    return;
-  }
-
-  if (!goalWeight || goalWeight <= 0) {
-    alert("Please enter your goal weight.");
-    return;
-  }
-
-  currentTargets = calculateMacros(
-    weight,
-    goalWeight,
-    unitInput.value,
-    goalInput.value,
-    activityInput.value
-  );
-
-  consumed = {
-    calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0
-  };
-
-  mealList.innerHTML = "";
-  mealPlan.innerHTML = "";
-
-  updateTargetDisplay();
-  updateRemainingDisplay();
-});
-
-addFoodBtn.addEventListener("click", () => {
-  const selectedFood = FOODS[foodSelect.value];
-  const servings = Number(servingsInput.value);
-
-  if (!selectedFood || servings <= 0) return;
-
-  const added = {
-    calories: Math.round(selectedFood.calories * servings),
-    protein: Math.round(selectedFood.protein * servings),
-    carbs: Math.round(selectedFood.carbs * servings),
-    fat: Math.round(selectedFood.fat * servings)
-  };
-
-  consumed.calories += added.calories;
-  consumed.protein += added.protein;
-  consumed.carbs += added.carbs;
-  consumed.fat += added.fat;
-
-  const li = document.createElement("li");
-  li.textContent = `${selectedFood.name} x ${servings} — ${added.calories} cal, ${added.protein}g protein, ${added.carbs}g carbs, ${added.fat}g fat`;
-
-  mealList.appendChild(li);
-  updateRemainingDisplay();
-});
-
-generateBreakfastBtn.addEventListener("click", () => {
-  generateMealByType("breakfast");
-});
-
-generateLunchBtn.addEventListener("click", () => {
-  generateMealByType("lunch");
-});
-
-generateSnackBtn.addEventListener("click", () => {
-  generateMealByType("snack");
-});
-
-generateDinnerBtn.addEventListener("click", () => {
-  generateMealByType("dinner");
-});
-
-generatePlanBtn.addEventListener("click", () => {
+function generateFullDayPlan() {
   if (currentTargets.calories === 0) {
     alert("Calculate your macros first.");
+    showPage("goalsPage");
     return;
   }
 
@@ -370,10 +333,153 @@ generatePlanBtn.addEventListener("click", () => {
     groceryListEl.innerHTML = "";
     alert("Full day saved.");
   });
+}
+
+function generateMultiDayPlan() {
+  if (currentTargets.calories === 0) {
+    alert("Calculate your macros first.");
+    showPage("goalsPage");
+    return;
+  }
+
+  const days = Number(planLengthInput.value || 7);
+  const remainingTargets = getRemainingMacros();
+
+  let html = `
+    <div class="day-header">
+      <h3>${days}-Day Meal Plan</h3>
+      <p>
+        Daily Goal: ${remainingTargets.calories} cal |
+        Protein ${remainingTargets.protein}g |
+        Carbs ${remainingTargets.carbs}g |
+        Fat ${remainingTargets.fat}g
+      </p>
+    </div>
+  `;
+
+  for (let day = 1; day <= days; day++) {
+    const dayMeals = generateGoalMealPlan(remainingTargets);
+    const dayTotals = calculateDayTotals(dayMeals);
+
+    html += `
+      <div class="meal-plan-item">
+        <h3>Day ${day}</h3>
+        <p>
+          ${dayTotals.calories} cal |
+          ${dayTotals.protein}g protein |
+          ${dayTotals.carbs}g carbs |
+          ${dayTotals.fat}g fat
+        </p>
+
+        ${dayMeals.map(meal => `
+          <div class="saved-meal-card">
+            <div>
+              <strong>${meal.title}: ${meal.mealName}</strong>
+              <small>
+                ${meal.totals.calories} cal |
+                P ${meal.totals.protein}g /
+                C ${meal.totals.carbs}g /
+                F ${meal.totals.fat}g
+              </small>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  mealPlan.innerHTML = html;
+  showPage("mealsPage");
+}
+
+calculateBtn.addEventListener("click", () => {
+  const weight = Number(weightInput.value);
+  const goalWeight = Number(goalWeightInput.value || weight);
+
+  if (!weight || weight <= 0) {
+    alert("Please enter your current weight.");
+    return;
+  }
+
+  if (!goalWeight || goalWeight <= 0) {
+    alert("Please enter your goal weight.");
+    return;
+  }
+
+  currentTargets = calculateMacros(
+    weight,
+    goalWeight,
+    unitInput.value,
+    goalInput.value,
+    activityInput.value
+  );
+
+  consumed = {
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fat: 0
+  };
+
+  mealList.innerHTML = "";
+  mealPlan.innerHTML = "";
+
+  updateTargetDisplay();
+  updateRemainingDisplay();
+  showPage("dashboardPage");
 });
 
+addFoodBtn.addEventListener("click", () => {
+  const selectedFood = FOODS[foodSelect.value];
+  const servings = Number(servingsInput.value);
+
+  if (!selectedFood || servings <= 0) return;
+
+  const added = {
+    calories: Math.round(selectedFood.calories * servings),
+    protein: Math.round(selectedFood.protein * servings),
+    carbs: Math.round(selectedFood.carbs * servings),
+    fat: Math.round(selectedFood.fat * servings)
+  };
+
+  consumed.calories += added.calories;
+  consumed.protein += added.protein;
+  consumed.carbs += added.carbs;
+  consumed.fat += added.fat;
+
+  const li = document.createElement("li");
+  li.textContent = `${selectedFood.name} x ${servings} — ${added.calories} cal, ${added.protein}g protein, ${added.carbs}g carbs, ${added.fat}g fat`;
+
+  mealList.appendChild(li);
+  updateRemainingDisplay();
+});
+
+tabButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    showPage(button.dataset.page);
+  });
+});
+
+jumpButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    showPage(button.dataset.page);
+  });
+});
+
+generateBreakfastBtn.addEventListener("click", () => generateMealByType("breakfast"));
+generateLunchBtn.addEventListener("click", () => generateMealByType("lunch"));
+generateSnackBtn.addEventListener("click", () => generateMealByType("snack"));
+generateDinnerBtn.addEventListener("click", () => generateMealByType("dinner"));
+generatePlanBtn.addEventListener("click", generateFullDayPlan);
+generateMultiDayPlanBtn.addEventListener("click", generateMultiDayPlan);
+
 generateGroceryListBtn.addEventListener("click", () => {
-  groceryListEl.innerHTML = renderGroceryList(savedMeals);
+  groceryListEl.innerHTML = renderGroceryList(savedMeals, currentTargets);
+  showPage("groceryPage");
+});
+
+generateGroceryListBtnAlt.addEventListener("click", () => {
+  groceryListEl.innerHTML = renderGroceryList(savedMeals, currentTargets);
 });
 
 clearSavedMealsBtn.addEventListener("click", () => {
@@ -383,7 +489,28 @@ clearSavedMealsBtn.addEventListener("click", () => {
   groceryListEl.innerHTML = "";
 });
 
+saveProfileBtn.addEventListener("click", () => {
+  const profile = {
+    name: profileNameInput.value,
+    email: profileEmailInput.value
+  };
+
+  localStorage.setItem("macroMateProfile", JSON.stringify(profile));
+  alert("Profile saved.");
+});
+
+function loadProfile() {
+  const profile = JSON.parse(localStorage.getItem("macroMateProfile"));
+
+  if (!profile) return;
+
+  profileNameInput.value = profile.name || "";
+  profileEmailInput.value = profile.email || "";
+}
+
 loadFoods();
+loadProfile();
 updateTargetDisplay();
 updateRemainingDisplay();
 renderSavedMeals();
+showPage("dashboardPage");

@@ -12,7 +12,9 @@ body {
 .app-header {
   text-align: center;
   padding: 32px 16px;
-  background: linear-gradient(135deg, #28c76f, #00cfe8);
+  background:
+    linear-gradient(135deg, rgba(40, 199, 111, 0.95), rgba(0, 207, 232, 0.88)),
+    #071014;
   color: #071014;
 }
 
@@ -26,12 +28,49 @@ body {
   font-size: 16px;
 }
 
+.app-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px;
+  background: rgba(16, 19, 26, 0.96);
+  border-bottom: 1px solid #252b3d;
+  backdrop-filter: blur(12px);
+}
+
+.tab-btn {
+  width: auto;
+  margin-top: 0;
+  padding: 10px 16px;
+  background: #1b2030;
+  color: #cfd6e6;
+  border: 1px solid #252b3d;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  background: #28c76f;
+  color: #071014;
+}
+
 .container {
   width: 92%;
   max-width: 1100px;
   margin: 24px auto;
   display: grid;
   gap: 20px;
+}
+
+.page {
+  display: none;
+  gap: 20px;
+}
+
+.page.active-page {
+  display: grid;
 }
 
 .card {
@@ -43,6 +82,57 @@ body {
 
 .card h2 {
   margin-top: 0;
+}
+
+.dashboard-hero {
+  min-height: 360px;
+  display: grid;
+  align-items: center;
+  gap: 22px;
+  background:
+    linear-gradient(90deg, rgba(16, 19, 26, 0.98) 0%, rgba(16, 19, 26, 0.78) 48%, rgba(16, 19, 26, 0.35) 100%),
+    radial-gradient(circle at 80% 30%, rgba(40, 199, 111, 0.24), transparent 34%),
+    linear-gradient(135deg, #10131a, #1b2030);
+  border: 1px solid rgba(0, 207, 232, 0.22);
+  overflow: hidden;
+  position: relative;
+}
+
+.dashboard-hero::after {
+  content: "P C F";
+  position: absolute;
+  right: 34px;
+  top: 36px;
+  font-size: 58px;
+  letter-spacing: 16px;
+  color: rgba(255, 255, 255, 0.06);
+  font-weight: 900;
+}
+
+.eyebrow {
+  color: #28c76f;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 10px;
+}
+
+.dashboard-hero h2 {
+  font-size: clamp(34px, 6vw, 64px);
+  line-height: 1;
+  max-width: 700px;
+  margin: 0;
+}
+
+.dashboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dashboard-actions button {
+  width: auto;
+  min-width: 160px;
 }
 
 .hint {
@@ -308,6 +398,25 @@ button:hover {
   color: #00cfe8;
 }
 
+.grocery-macro-summary {
+  background: #1b2030;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.macro-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.macro-compare-grid div {
+  background: #252b3d;
+  border-radius: 12px;
+  padding: 12px;
+}
+
 .grocery-category {
   background: #1b2030;
   padding: 14px;
@@ -348,12 +457,22 @@ footer {
 }
 
 @media (max-width: 800px) {
+  .app-tabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
   .meal-buttons {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .saved-action-buttons {
+  .saved-action-buttons,
+  .macro-compare-grid {
     grid-template-columns: 1fr;
+  }
+
+  .dashboard-actions button {
+    width: 100%;
   }
 }
 
