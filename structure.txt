@@ -1,36 +1,39 @@
-MacroMate/
+ProjectName/
 │
-├── index.html
 ├── README.md
 ├── CHANGELOG.md
+├── LICENSE
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── SECURITY.md
 ├── package.json
-│
-├── css/
-│   └── style.css
-│
-├── data/
-│   ├── foods.js
-│   ├── recipes.js
-│   └── groceryCategories.js
-│
-├── js/
-│   ├── app.js
-│   ├── macroCalculator.js
-│   ├── mealPlanner.js
-│   ├── grocery.js
-│   ├── pantry.js
-│   └── shopping.js
+├── .gitignore
 │
 ├── docs/
-│   ├── ARCHITECTURE.md
 │   ├── ROADMAP.md
+│   ├── ARCHITECTURE.md
+│   ├── API.md
 │   ├── TESTING.md
-│   └── DEPLOYMENT.md
+│   ├── DEPLOYMENT.md
+│   ├── REQUIREMENTS.md
+│   ├── USER_GUIDE.md
+│   └── DESIGN_DECISIONS.md
 │
-└── assets/
-    ├── screenshots/
-    └── icons/
-
+├── assets/
+│   ├── screenshots/
+│   ├── gifs/
+│   ├── icons/
+│   ├── logos/
+│   └── demo/
+│
+├── tests/
+│
+├── src/
+│
+└── .github/
+    ├── ISSUE_TEMPLATE/
+    ├── workflows/
+    └── pull_request_template.md
 
 
 cd /d D:\APPS\APPS\MacroMate
