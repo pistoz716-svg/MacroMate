@@ -1,49 +1,66 @@
-ProjectName/
-│
-├── README.md
-├── CHANGELOG.md
-├── LICENSE
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── SECURITY.md
-├── package.json
-├── .gitignore
-│
-├── docs/
-│   ├── ROADMAP.md
-│   ├── ARCHITECTURE.md
-│   ├── API.md
-│   ├── TESTING.md
-│   ├── DEPLOYMENT.md
-│   ├── REQUIREMENTS.md
-│   ├── USER_GUIDE.md
-│   └── DESIGN_DECISIONS.md
-│
-├── assets/
-│   ├── screenshots/
-│   ├── gifs/
-│   ├── icons/
-│   ├── logos/
-│   └── demo/
-│
-├── tests/
-│
-├── src/
-│
-└── .github/
-    ├── ISSUE_TEMPLATE/
-    ├── workflows/
-    └── pull_request_template.md
 
 
 cd /d D:\APPS\APPS\MacroMate
-
-
-
 
 
 git config --global user.name "Fredrick Johnson IV"
 git config --global user.email "pistoz716@gmail.com"
 
 
-2CED-8501
+
+MacroMate v2 Architecture
+
+MacroMate/
+│
+├── index.html
+│
+├── css/
+│   ├── base.css
+│   ├── variables.css
+│   ├── layout.css
+│   ├── dashboard.css
+│   ├── goals.css
+│   ├── meals.css
+│   ├── recipes.css
+│   ├── grocery.css
+│   ├── profile.css
+│   ├── components.css
+│   ├── animations.css
+│   └── responsive.css
+│
+├── js/
+│   ├── core/
+│   │   ├── app.js
+│   │   ├── navigation.js
+│   │   ├── storage.js
+│   │   └── helpers.js
+│   │
+│   ├── dashboard/
+│   │   └── dashboard.js
+│   │
+│   ├── goals/
+│   │   ├── macroCalculator.js
+│   │   └── goals.js
+│   │
+│   ├── meals/
+│   │   ├── mealPlanner.js
+│   │   ├── recipeRenderer.js
+│   │   ├── recipeTabs.js
+│   │   └── ingredientScaler.js
+│   │
+│   ├── grocery/
+│   │   ├── grocery.js
+│   │   ├── shopping.js
+│   │   └── pantry.js
+│   │
+│   └── profile/
+│       └── profile.js
+│
+├── assets/
+│
+├── data/
+│
+├── docs/
+│
+└── portfolio/
+

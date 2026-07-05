@@ -192,6 +192,26 @@ function saveMeal(meal) {
   groceryListEl.innerHTML = "";
 }
 
+function renderOptionalList(title, items) {
+  if (!items || !Array.isArray(items) || items.length === 0) return "";
+
+  return `
+    <h5>${title}</h5>
+    <ul>
+      ${items.map(item => `<li>${item}</li>`).join("")}
+    </ul>
+  `;
+}
+
+function renderOptionalParagraph(title, text) {
+  if (!text) return "";
+
+  return `
+    <h5>${title}</h5>
+    <p>${text}</p>
+  `;
+}
+
 function renderMealCard(meal, showSaveButton = true) {
   return `
     <div class="meal-card">
@@ -216,6 +236,8 @@ function renderMealCard(meal, showSaveButton = true) {
       </div>
 
       <div class="recipe-box">
+        ${renderOptionalList("Equipment", meal.equipment)}
+
         <h5>Ingredients</h5>
         <ul>
           ${meal.foods.map(food => `
@@ -232,11 +254,14 @@ function renderMealCard(meal, showSaveButton = true) {
           ${meal.directions.map(step => `<li>${step}</li>`).join("")}
         </ol>
 
-        <h5>Storage</h5>
-        <p>${meal.storage}</p>
+        ${renderOptionalList("Meal Prep", meal.mealPrep)}
+        ${renderOptionalParagraph("Reheating", meal.reheating)}
+        ${renderOptionalParagraph("Storage", meal.storage)}
+        ${renderOptionalList("Chef Tips", meal.chefTips)}
+        ${renderOptionalList("Variations", meal.variations)}
 
         <h5>Substitutions</h5>
-        <p>${meal.substitutions}</p>
+        <p>${meal.substitutions || "No substitutions listed."}</p>
       </div>
 
       ${showSaveButton ? `<button id="saveGeneratedMealBtn" type="button">Save ${meal.title}</button>` : ""}
@@ -523,4 +548,13 @@ loadProfile();
 updateTargetDisplay();
 updateRemainingDisplay();
 renderSavedMeals();
+
+if (typeof initializeRecipeLibrary === "function") {
+  initializeRecipeLibrary();
+}
+
+if (typeof renderFavoriteRecipes === "function") {
+  renderFavoriteRecipes();
+}
+
 showPage("dashboardPage");

@@ -1,0 +1,61 @@
+Portfolio/
+│
+├── README.md                        ← Master Portfolio
+│
+├── Resume/
+│   ├── Resume.pdf
+│   ├── Software_Engineer_Resume.docx
+│   ├── Project_Summary.pdf
+│   └── Interview_Cheat_Sheet.md
+│
+├── MacroMate/
+│   ├── README.md
+│   ├── CHANGELOG.md
+│   ├── ROADMAP.md
+│   ├── docs/
+│   ├── Screenshots/
+│   ├── Demo-Videos/
+│   ├── Resume-Assets/
+│   ├── Case-Study/
+│   ├── Release-Notes/
+│   ├── Architecture/
+│   └── Interview-Talking-Points/
+│
+├── Alkaline-Food-Scanner/
+│   ├── README.md
+│   ├── CHANGELOG.md
+│   ├── ROADMAP.md
+│   ├── docs/
+│   ├── Screenshots/
+│   ├── Demo-Videos/
+│   ├── Resume-Assets/
+│   ├── Case-Study/
+│   ├── Release-Notes/
+│   ├── Architecture/
+│   └── Interview-Talking-Points/
+│
+├── Estimatic/
+│   ├── README.md
+│   ├── CHANGELOG.md
+│   ├── ROADMAP.md
+│   ├── docs/
+│   ├── Screenshots/
+│   ├── Demo-Videos/
+│   ├── Resume-Assets/
+│   ├── Case-Study/
+│   ├── Release-Notes/
+│   ├── Architecture/
+│   └── Interview-Talking-Points/
+│
+└── DANI/
+    ├── README.md
+    ├── CHANGELOG.md
+    ├── ROADMAP.md
+    ├── docs/
+    ├── Screenshots/
+    ├── Demo-Videos/
+    ├── Resume-Assets/
+    ├── Case-Study/
+    ├── Release-Notes/
+    ├── Architecture/
+    └── Interview-Talking-Points/
