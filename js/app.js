@@ -67,13 +67,8 @@ const profileEmailInput = document.getElementById("profileEmail");
 const saveProfileBtn = document.getElementById("saveProfileBtn");
 
 function showPage(pageId) {
-  pages.forEach(page => {
-    page.classList.remove("active-page");
-  });
-
-  tabButtons.forEach(button => {
-    button.classList.remove("active");
-  });
+  pages.forEach(page => page.classList.remove("active-page"));
+  tabButtons.forEach(button => button.classList.remove("active"));
 
   const selectedPage = document.getElementById(pageId);
   const selectedButton = document.querySelector(`[data-page="${pageId}"]`);
@@ -335,6 +330,32 @@ function generateFullDayPlan() {
   });
 }
 
+function renderDayPrepDirections(day, dayMeals) {
+  return `
+    <div class="recipe-box">
+      <h5>Day ${day} Meal Prep Directions</h5>
+      <ol>
+        <li>Review all recipes for Day ${day} before cooking.</li>
+        <li>Gather the ingredients listed in each meal card.</li>
+        <li>Cook proteins first, such as eggs, chicken, turkey, beef, salmon, tuna, tofu, or yogurt-based proteins.</li>
+        <li>Cook or portion carb sources next, such as oats, rice, potatoes, pasta, quinoa, bread, or granola.</li>
+        <li>Wash, chop, steam, or portion fruits and vegetables.</li>
+        <li>Add fats last, such as avocado, olive oil, peanut butter, almonds, cheese, or cashews.</li>
+        <li>Package meals separately and label them Breakfast, Lunch, Snack, and Dinner.</li>
+        <li>Refrigerate meals you will eat within 3–4 days.</li>
+        <li>Freeze meals if preparing more than 4 days ahead.</li>
+      </ol>
+
+      <h5>Day ${day} Meal Order</h5>
+      <ul>
+        ${dayMeals.map(meal => `
+          <li><strong>${meal.title}:</strong> ${meal.mealName}</li>
+        `).join("")}
+      </ul>
+    </div>
+  `;
+}
+
 function generateMultiDayPlan() {
   if (currentTargets.calories === 0) {
     alert("Calculate your macros first.");
@@ -347,7 +368,7 @@ function generateMultiDayPlan() {
 
   let html = `
     <div class="day-header">
-      <h3>${days}-Day Meal Plan</h3>
+      <h3>${days}-Day Detailed Meal Plan</h3>
       <p>
         Daily Goal: ${remainingTargets.calories} cal |
         Protein ${remainingTargets.protein}g |
@@ -363,29 +384,23 @@ function generateMultiDayPlan() {
 
     html += `
       <div class="meal-plan-item">
-        <h3>Day ${day}</h3>
-        <p>
-          ${dayTotals.calories} cal |
-          ${dayTotals.protein}g protein |
-          ${dayTotals.carbs}g carbs |
-          ${dayTotals.fat}g fat
-        </p>
-
-        ${dayMeals.map(meal => `
-          <div class="saved-meal-card">
-            <div>
-              <strong>${meal.title}: ${meal.mealName}</strong>
-              <small>
-                ${meal.totals.calories} cal |
-                P ${meal.totals.protein}g /
-                C ${meal.totals.carbs}g /
-                F ${meal.totals.fat}g
-              </small>
-            </div>
-          </div>
-        `).join("")}
-      </div>
+        <div class="day-header">
+          <h3>Day ${day}</h3>
+          <p>
+            ${dayTotals.calories} cal |
+            ${dayTotals.protein}g protein |
+            ${dayTotals.carbs}g carbs |
+            ${dayTotals.fat}g fat
+          </p>
+        </div>
     `;
+
+    dayMeals.forEach(meal => {
+      html += renderMealCard(meal, false);
+    });
+
+    html += renderDayPrepDirections(day, dayMeals);
+    html += `</div>`;
   }
 
   mealPlan.innerHTML = html;
@@ -455,15 +470,11 @@ addFoodBtn.addEventListener("click", () => {
 });
 
 tabButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    showPage(button.dataset.page);
-  });
+  button.addEventListener("click", () => showPage(button.dataset.page));
 });
 
 jumpButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    showPage(button.dataset.page);
-  });
+  button.addEventListener("click", () => showPage(button.dataset.page));
 });
 
 generateBreakfastBtn.addEventListener("click", () => generateMealByType("breakfast"));
@@ -501,7 +512,6 @@ saveProfileBtn.addEventListener("click", () => {
 
 function loadProfile() {
   const profile = JSON.parse(localStorage.getItem("macroMateProfile"));
-
   if (!profile) return;
 
   profileNameInput.value = profile.name || "";
