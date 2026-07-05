@@ -14,6 +14,7 @@ let consumed = {
 
 let lastGeneratedMeal = null;
 let savedMeals = JSON.parse(localStorage.getItem("savedMeals")) || [];
+let waterCount = Number(localStorage.getItem("macroMateWaterCount")) || 0;
 
 const tabButtons = document.querySelectorAll(".tab-btn");
 const jumpButtons = document.querySelectorAll(".jump-btn");
@@ -35,6 +36,16 @@ const dashCaloriesEl = document.getElementById("dashCalories");
 const dashProteinEl = document.getElementById("dashProtein");
 const dashCarbsEl = document.getElementById("dashCarbs");
 const dashFatEl = document.getElementById("dashFat");
+
+const dashboardGreetingEl = document.getElementById("dashboardGreeting");
+const dashboardGoalLabelEl = document.getElementById("dashboardGoalLabel");
+const dashboardProgressPercentEl = document.getElementById("dashboardProgressPercent");
+const dashboardProgressTextEl = document.getElementById("dashboardProgressText");
+
+const waterCountEl = document.getElementById("waterCount");
+const waterTrackerTextEl = document.getElementById("waterTrackerText");
+const increaseWaterBtn = document.getElementById("increaseWaterBtn");
+const decreaseWaterBtn = document.getElementById("decreaseWaterBtn");
 
 const remainingCaloriesEl = document.getElementById("remainingCalories");
 const remainingProteinEl = document.getElementById("remainingProtein");
@@ -121,6 +132,58 @@ function updateRemainingDisplay() {
   remainingFatEl.textContent = remaining.fat + "g";
 }
 
+function updateDashboardGreeting() {
+  const hour = new Date().getHours();
+
+  if (hour < 12) {
+    dashboardGreetingEl.textContent = "Good Morning";
+  } else if (hour < 18) {
+    dashboardGreetingEl.textContent = "Good Afternoon";
+  } else {
+    dashboardGreetingEl.textContent = "Good Evening";
+  }
+}
+
+function updateDashboardGoalLabel() {
+  const labels = {
+    auto: "Auto Goal",
+    gain: "Lean Bulk",
+    cut: "Fat Loss",
+    maintain: "Maintenance"
+  };
+
+  dashboardGoalLabelEl.textContent = labels[goalInput.value] || "Macro Focus";
+}
+
+function updateDashboardProgress() {
+  if (!currentTargets.calories || currentTargets.calories <= 0) {
+    dashboardProgressPercentEl.textContent = "0%";
+    dashboardProgressTextEl.textContent = "Calculate your macros to begin.";
+    return;
+  }
+
+  const percent = Math.min(
+    Math.round((consumed.calories / currentTargets.calories) * 100),
+    100
+  );
+
+  dashboardProgressPercentEl.textContent = percent + "%";
+  dashboardProgressTextEl.textContent = `${consumed.calories} of ${currentTargets.calories} calories logged.`;
+}
+
+function updateWaterDisplay() {
+  waterCountEl.textContent = `${waterCount} / 8`;
+  waterTrackerTextEl.textContent = `${waterCount} / 8 Glasses`;
+  localStorage.setItem("macroMateWaterCount", String(waterCount));
+}
+
+function updateDashboard() {
+  updateDashboardGreeting();
+  updateDashboardGoalLabel();
+  updateDashboardProgress();
+  updateWaterDisplay();
+}
+
 function calculateDayTotals(meals) {
   return meals.reduce(
     (total, meal) => {
@@ -192,26 +255,6 @@ function saveMeal(meal) {
   groceryListEl.innerHTML = "";
 }
 
-function renderOptionalList(title, items) {
-  if (!items || !Array.isArray(items) || items.length === 0) return "";
-
-  return `
-    <h5>${title}</h5>
-    <ul>
-      ${items.map(item => `<li>${item}</li>`).join("")}
-    </ul>
-  `;
-}
-
-function renderOptionalParagraph(title, text) {
-  if (!text) return "";
-
-  return `
-    <h5>${title}</h5>
-    <p>${text}</p>
-  `;
-}
-
 function renderMealCard(meal, showSaveButton = true) {
   return `
     <div class="meal-card">
@@ -236,13 +279,17 @@ function renderMealCard(meal, showSaveButton = true) {
       </div>
 
       <div class="recipe-box">
-        ${renderOptionalList("Equipment", meal.equipment)}
+        <h5>Equipment</h5>
+        <ul>
+          ${(meal.equipment || []).map(item => `<li>${item}</li>`).join("")}
+        </ul>
 
         <h5>Ingredients</h5>
         <ul>
           ${meal.foods.map(food => `
             <li>
               <strong>${food.servings} x ${food.servingLabel}</strong> ${food.name}
+              ${food.notes ? `<br><small>${food.notes}</small>` : ""}
               <br>
               <small>${food.calories} cal | P ${food.protein}g / C ${food.carbs}g / F ${food.fat}g</small>
             </li>
@@ -251,17 +298,42 @@ function renderMealCard(meal, showSaveButton = true) {
 
         <h5>Directions</h5>
         <ol>
-          ${meal.directions.map(step => `<li>${step}</li>`).join("")}
+          ${meal.directions.map(step => `
+            <li>
+              <strong>${step.title}</strong>
+              <p>${step.body}</p>
+            </li>
+          `).join("")}
         </ol>
 
-        ${renderOptionalList("Meal Prep", meal.mealPrep)}
-        ${renderOptionalParagraph("Reheating", meal.reheating)}
-        ${renderOptionalParagraph("Storage", meal.storage)}
-        ${renderOptionalList("Chef Tips", meal.chefTips)}
-        ${renderOptionalList("Variations", meal.variations)}
+        <h5>Meal Prep</h5>
+        <ol>
+          ${(meal.mealPrep || []).map(step => `<li>${step}</li>`).join("")}
+        </ol>
+
+        <h5>Storage</h5>
+        <p>${meal.storage}</p>
+
+        <h5>Reheating</h5>
+        <p>${meal.reheating}</p>
+
+        <h5>Chef Tips</h5>
+        <ul>
+          ${(meal.chefTips || []).map(tip => `<li>${tip}</li>`).join("")}
+        </ul>
+
+        <h5>Common Mistakes</h5>
+        <ul>
+          ${(meal.mistakes || []).map(mistake => `<li>${mistake}</li>`).join("")}
+        </ul>
+
+        <h5>Variations</h5>
+        <ul>
+          ${(meal.variations || []).map(item => `<li>${item}</li>`).join("")}
+        </ul>
 
         <h5>Substitutions</h5>
-        <p>${meal.substitutions || "No substitutions listed."}</p>
+        <p>${meal.substitutions}</p>
       </div>
 
       ${showSaveButton ? `<button id="saveGeneratedMealBtn" type="button">Save ${meal.title}</button>` : ""}
@@ -466,6 +538,7 @@ calculateBtn.addEventListener("click", () => {
 
   updateTargetDisplay();
   updateRemainingDisplay();
+  updateDashboard();
   showPage("dashboardPage");
 });
 
@@ -492,6 +565,7 @@ addFoodBtn.addEventListener("click", () => {
 
   mealList.appendChild(li);
   updateRemainingDisplay();
+  updateDashboard();
 });
 
 tabButtons.forEach(button => {
@@ -523,6 +597,16 @@ clearSavedMealsBtn.addEventListener("click", () => {
   saveSavedMeals();
   renderSavedMeals();
   groceryListEl.innerHTML = "";
+});
+
+increaseWaterBtn.addEventListener("click", () => {
+  waterCount = Math.min(waterCount + 1, 20);
+  updateWaterDisplay();
+});
+
+decreaseWaterBtn.addEventListener("click", () => {
+  waterCount = Math.max(waterCount - 1, 0);
+  updateWaterDisplay();
 });
 
 saveProfileBtn.addEventListener("click", () => {
@@ -557,4 +641,5 @@ if (typeof renderFavoriteRecipes === "function") {
   renderFavoriteRecipes();
 }
 
+updateDashboard();
 showPage("dashboardPage");

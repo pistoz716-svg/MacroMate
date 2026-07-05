@@ -11,7 +11,7 @@
 <body>
   <header class="app-header">
     <h1>MacroMate</h1>
-    <p>Macro counter, meal planner, recipe library, grocery list, and nutrition dashboard.</p>
+    <p>Your personal nutrition operating system.</p>
   </header>
 
   <nav class="app-tabs">
@@ -27,38 +27,177 @@
   <main class="container">
 
     <section id="dashboardPage" class="page active-page">
-      <section class="card dashboard-hero">
-        <div>
-          <p class="eyebrow">Welcome back</p>
-          <h2>Fuel Your Body. Achieve Your Best.</h2>
-          <p class="hint">Track smarter. Eat better. Stay locked in on your goal.</p>
+
+      <section class="dashboard-v3-hero">
+        <div class="dashboard-welcome">
+          <p class="eyebrow">Today’s Mission</p>
+          <h2 id="dashboardGreeting">Good Morning</h2>
+          <p class="hint">Plan. Cook. Shop. Track. Improve. Repeat.</p>
+
+          <div class="dashboard-program-pill">
+            <span>Active Goal</span>
+            <strong id="dashboardGoalLabel">Macro Focus</strong>
+          </div>
         </div>
 
-        <div class="dashboard-actions">
-          <button type="button" class="jump-btn" data-page="mealsPage">Generate Meal</button>
-          <button type="button" class="jump-btn" data-page="goalsPage">Update Goals</button>
-          <button type="button" class="jump-btn" data-page="recipeLibraryPage">Browse Recipes</button>
-          <button type="button" class="jump-btn" data-page="groceryPage">View Grocery List</button>
+        <div class="progress-ring-card">
+          <div class="progress-ring">
+            <span id="dashboardProgressPercent">0%</span>
+          </div>
+          <h3>Today's Progress</h3>
+          <p id="dashboardProgressText">Calculate your macros to begin.</p>
+        </div>
+      </section>
+
+      <section class="dashboard-kpi-grid">
+        <div class="kpi-card">
+          <span>Calories</span>
+          <strong id="dashCalories">0</strong>
+          <small>Daily target</small>
+        </div>
+
+        <div class="kpi-card">
+          <span>Protein</span>
+          <strong id="dashProtein">0g</strong>
+          <small>Muscle support</small>
+        </div>
+
+        <div class="kpi-card">
+          <span>Carbs</span>
+          <strong id="dashCarbs">0g</strong>
+          <small>Training fuel</small>
+        </div>
+
+        <div class="kpi-card">
+          <span>Fat</span>
+          <strong id="dashFat">0g</strong>
+          <small>Hormone support</small>
+        </div>
+
+        <div class="kpi-card">
+          <span>Water</span>
+          <strong id="waterCount">0 / 8</strong>
+          <small>Glasses today</small>
         </div>
       </section>
 
       <section class="card">
-        <h2>Today’s Macro Snapshot</h2>
+        <h2>Quick Actions</h2>
 
-        <div class="macro-grid">
-          <div><h3 id="dashCalories">0</h3><p>Calories</p></div>
-          <div><h3 id="dashProtein">0g</h3><p>Protein</p></div>
-          <div><h3 id="dashCarbs">0g</h3><p>Carbs</p></div>
-          <div><h3 id="dashFat">0g</h3><p>Fat</p></div>
+        <div class="quick-action-grid">
+          <button type="button" class="quick-action-card jump-btn" data-page="mealsPage">
+            <span>🍳</span>
+            <strong>Generate Meals</strong>
+            <small>Build today’s plan</small>
+          </button>
+
+          <button type="button" class="quick-action-card jump-btn" data-page="recipeLibraryPage">
+            <span>📚</span>
+            <strong>Recipe Library</strong>
+            <small>Browse recipes</small>
+          </button>
+
+          <button type="button" class="quick-action-card jump-btn" data-page="groceryPage">
+            <span>🛒</span>
+            <strong>Groceries</strong>
+            <small>Shop by plan</small>
+          </button>
+
+          <button type="button" class="quick-action-card">
+            <span>🥫</span>
+            <strong>Pantry</strong>
+            <small>Coming soon</small>
+          </button>
+
+          <button type="button" class="quick-action-card">
+            <span>📈</span>
+            <strong>Progress</strong>
+            <small>Coming soon</small>
+          </button>
         </div>
       </section>
 
-      <section class="card">
-        <h2>Daily Focus</h2>
-        <p class="hint">
-          Calculate your goals, generate meals, save the ones you like, browse the recipe library, then build your grocery list.
-        </p>
+      <section class="dashboard-two-column">
+        <div class="card smart-coach-card">
+          <p class="eyebrow">Smart Recommendation</p>
+          <h2>You’re building consistency.</h2>
+          <p class="hint">
+            Generate a full-day plan, save your favorite meals, then create your grocery list.
+          </p>
+
+          <button type="button" class="jump-btn" data-page="mealsPage">
+            Generate Today’s Meals
+          </button>
+        </div>
+
+        <div class="card water-card">
+          <h2>Water Tracker</h2>
+          <div class="water-display">💧</div>
+          <h3 id="waterTrackerText">0 / 8 Glasses</h3>
+
+          <div class="water-buttons">
+            <button id="decreaseWaterBtn" type="button">-</button>
+            <button id="increaseWaterBtn" type="button">+</button>
+          </div>
+        </div>
       </section>
+
+      <section class="dashboard-two-column">
+        <div class="card">
+          <h2>Meal Timeline</h2>
+
+          <div class="meal-timeline">
+            <div class="timeline-item complete">
+              <span>✓</span>
+              <div>
+                <strong>Breakfast</strong>
+                <small>Generate or save a breakfast meal</small>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <span>○</span>
+              <div>
+                <strong>Lunch</strong>
+                <small>Plan your midday fuel</small>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <span>○</span>
+              <div>
+                <strong>Snack</strong>
+                <small>Keep macros balanced</small>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <span>○</span>
+              <div>
+                <strong>Dinner</strong>
+                <small>Finish strong</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Weekly Snapshot</h2>
+
+          <div class="mini-chart">
+            <span style="height: 35%"></span>
+            <span style="height: 55%"></span>
+            <span style="height: 45%"></span>
+            <span style="height: 70%"></span>
+            <span style="height: 82%"></span>
+            <span style="height: 64%"></span>
+            <span style="height: 90%"></span>
+          </div>
+
+          <p class="hint">Demo data for now. Progress tracking comes next.</p>
+        </div>
+      </section>
+
     </section>
 
     <section id="goalsPage" class="page">
