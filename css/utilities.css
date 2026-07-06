@@ -1,0 +1,5 @@
+.text-muted { color: var(--color-muted); }
+.text-subtle { color: var(--color-subtle); }
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.hidden { display: none !important; }

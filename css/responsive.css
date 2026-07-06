@@ -1,0 +1,23 @@
+@media (max-width: 1000px) {
+  .dashboard-v3-hero, .dashboard-two-column { grid-template-columns: 1fr; }
+  .dashboard-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) { .recipe-library-grid { grid-template-columns: 1fr; } }
+@media (max-width: 850px) {
+  .recipe-hero-card { grid-template-columns: 1fr; }
+  .recipe-hero-meta, .nutrition-panel { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 800px) {
+  .app-tabs { justify-content: flex-start; overflow-x: auto; }
+  .meal-buttons { grid-template-columns: repeat(2, 1fr); }
+  .saved-action-buttons, .macro-compare-grid { grid-template-columns: 1fr; }
+  .dashboard-actions button { width: 100%; }
+  .library-card-actions { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .macro-grid, .recipe-meta { grid-template-columns: repeat(2, 1fr); }
+  .meal-card-header, .saved-meal-card, .grocery-category li, .favorite-card { flex-direction: column; align-items: flex-start; }
+  .grocery-category span { text-align: left; }
+  .app-header h1 { font-size: 34px; }
+}
+@media (max-width: 650px) { .dashboard-kpi-grid { grid-template-columns: 1fr; } }

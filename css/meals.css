@@ -1,0 +1,23 @@
+#mealList { list-style: none; padding: 0; }
+#mealList li { background: var(--color-card-2); margin-top: 10px; padding: 12px; border-radius: var(--radius-sm); }
+.meal-buttons, .saved-action-buttons { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.saved-action-buttons { grid-template-columns: repeat(2, 1fr); margin-top: 12px; }
+.meal-plan-item { background: var(--color-card-2); margin-top: 12px; padding: 14px; border-radius: var(--radius-sm); }
+.meal-card { background: var(--color-bg); border-radius: 14px; padding: 16px; margin-top: 16px; border-left: 5px solid var(--color-secondary); }
+.meal-card-header { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 10px; }
+.meal-card-header h4 { margin: 0; color: var(--color-primary); font-size: 20px; }
+.meal-card-header span { background: var(--color-card-2); color: var(--color-text); padding: 6px 10px; border-radius: var(--radius-pill); font-size: 13px; }
+.recipe-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 12px 0; }
+.recipe-meta span { background: var(--color-card-2); color: var(--color-muted); padding: 10px; border-radius: var(--radius-sm); text-align: center; font-size: 14px; }
+.meal-total { margin-top: 14px; background: var(--color-card-2); color: var(--color-primary); padding: 12px; border-radius: var(--radius-sm); font-weight: bold; }
+.recipe-box { background: var(--color-card); padding: 14px; border-radius: var(--radius-md); margin-top: 14px; }
+.recipe-box h5 { margin: 12px 0 8px; color: var(--color-secondary); font-size: 16px; }
+.recipe-box ul, .recipe-box ol { margin-top: 8px; padding-left: 22px; }
+.recipe-box li { margin-bottom: 10px; line-height: 1.5; }
+.recipe-box small, .recipe-box p { color: var(--color-subtle); }
+.recipe-box p { line-height: 1.5; }
+.saved-plan-box { background: var(--color-bg); border: 1px solid var(--color-border); padding: 16px; border-radius: 14px; margin-top: 22px; }
+.saved-plan-box h3 { margin-top: 0; color: var(--color-primary); }
+.saved-meal-card { background: var(--color-card); border-left: 5px solid var(--color-primary); padding: 14px; border-radius: var(--radius-md); margin-top: 12px; display: flex; justify-content: space-between; gap: 14px; align-items: center; }
+.saved-meal-card small { display: block; color: var(--color-subtle); margin-top: 5px; line-height: 1.4; }
+.saved-meal-card button { width: auto; min-width: 100px; margin-top: 0; background: var(--color-input); color: var(--color-text); }

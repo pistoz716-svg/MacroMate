@@ -1,0 +1,24 @@
+.recipe-hero-card { background: linear-gradient(135deg, rgba(16, 19, 26, 0.96), rgba(37, 43, 61, 0.96)); border: 1px solid var(--color-input); border-radius: 18px; overflow: hidden; display: grid; grid-template-columns: 280px 1fr; margin-top: 16px; }
+.recipe-hero-image { min-height: 260px; background: radial-gradient(circle at 50% 35%, rgba(40, 199, 111, 0.25), transparent 42%), linear-gradient(135deg, var(--color-bg), var(--color-card-2)); display: flex; align-items: flex-end; padding: 18px; }
+.recipe-hero-image span { background: var(--color-primary); color: var(--color-dark); padding: 7px 12px; border-radius: var(--radius-pill); font-weight: bold; font-size: 13px; }
+.recipe-hero-content { padding: 22px; }
+.recipe-hero-content h2 { margin: 0; font-size: clamp(30px, 5vw, 48px); }
+.recipe-rating { margin-top: 10px; color: var(--color-primary); font-weight: bold; }
+.recipe-rating span { color: var(--color-muted); font-weight: normal; }
+.recipe-hero-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 18px 0; }
+.recipe-hero-meta div { background: var(--color-bg); padding: 12px; border-radius: var(--radius-md); }
+.recipe-hero-meta strong, .nutrition-panel strong { display: block; color: var(--color-primary); font-size: 18px; }
+.recipe-hero-meta small, .nutrition-panel small { color: var(--color-subtle); }
+.recipe-hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.recipe-hero-actions button { width: auto; min-width: 150px; }
+.recipe-viewer-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+.recipe-viewer-tab { width: auto; margin-top: 0; padding: 10px 14px; background: var(--color-bg); color: var(--color-muted); border: 1px solid var(--color-input); border-radius: var(--radius-pill); }
+.recipe-viewer-tab.active, .recipe-viewer-tab:hover { background: var(--color-secondary); color: var(--color-dark); }
+.recipe-tab-panel { display: none; }
+.recipe-tab-panel.active-recipe-tab { display: block; }
+.nutrition-panel { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.nutrition-panel div { background: var(--color-card-2); border-radius: var(--radius-md); padding: 14px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag-row span { background: var(--color-card-2); color: var(--color-muted); padding: 7px 10px; border-radius: var(--radius-pill); font-size: 13px; }
+.detailed-directions strong { color: var(--color-primary); }
+.detailed-directions p { margin-top: 4px; }

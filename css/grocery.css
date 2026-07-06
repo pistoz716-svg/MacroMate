@@ -1,0 +1,10 @@
+.grocery-list-box { background: var(--color-bg); border: 1px solid var(--color-secondary); padding: 16px; border-radius: 14px; margin-top: 18px; }
+.grocery-list-box h3 { margin-top: 0; color: var(--color-secondary); }
+.grocery-macro-summary { background: var(--color-card); border-radius: 14px; padding: 14px; margin-bottom: 14px; }
+.macro-compare-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.macro-compare-grid div { background: var(--color-card-2); border-radius: var(--radius-md); padding: 12px; }
+.grocery-category { background: var(--color-card); padding: 14px; border-radius: var(--radius-md); margin-top: 12px; }
+.grocery-category h4 { margin: 0 0 10px; color: var(--color-primary); }
+.grocery-category ul { list-style: none; padding: 0; margin: 0; }
+.grocery-category li { background: var(--color-card-2); padding: 12px; border-radius: var(--radius-sm); margin-top: 8px; display: flex; justify-content: space-between; gap: 14px; }
+.grocery-category span { color: var(--color-secondary); text-align: right; }

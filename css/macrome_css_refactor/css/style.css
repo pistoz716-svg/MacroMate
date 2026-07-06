@@ -1,0 +1,17 @@
+@import url("reset.css");
+@import url("variables.css");
+@import url("layout.css");
+@import url("components.css");
+
+@import url("dashboard.css");
+@import url("goals.css");
+@import url("meals.css");
+@import url("recipe-library.css");
+@import url("recipe-viewer.css");
+@import url("grocery.css");
+@import url("pantry.css");
+@import url("favorites.css");
+@import url("profile.css");
+
+@import url("utilities.css");
+@import url("responsive.css");

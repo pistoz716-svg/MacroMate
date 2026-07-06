@@ -1,5 +1,9 @@
 Portfolio/
-│
+
+
+├── Home
+├── About
+├── Projects│
 ├── README.md                        ← Master Portfolio
 │
 ├── Resume/
@@ -59,3 +63,7 @@ Portfolio/
     ├── Release-Notes/
     ├── Architecture/
     └── Interview-Talking-Points/
+
+
+├── Contact
+└── Assets

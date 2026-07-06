@@ -174,7 +174,7 @@ function updateDashboardProgress() {
 function updateWaterDisplay() {
   waterCountEl.textContent = `${waterCount} / 8`;
   waterTrackerTextEl.textContent = `${waterCount} / 8 Glasses`;
-  localStorage.setItem("macroMateWaterCount", String(waterCount));
+  localStorage.setItem("macroMeWaterCount", String(waterCount));
 }
 
 function updateDashboard() {
@@ -615,12 +615,12 @@ saveProfileBtn.addEventListener("click", () => {
     email: profileEmailInput.value
   };
 
-  localStorage.setItem("macroMateProfile", JSON.stringify(profile));
+  localStorage.setItem("macroMeProfile", JSON.stringify(profile));
   alert("Profile saved.");
 });
 
 function loadProfile() {
-  const profile = JSON.parse(localStorage.getItem("macroMateProfile"));
+  const profile = JSON.parse(localStorage.getItem("macroMeProfile"));
   if (!profile) return;
 
   profileNameInput.value = profile.name || "";

@@ -1,0 +1,4 @@
+.favorite-card { background: var(--color-bg); border-left: 5px solid var(--color-secondary); padding: 14px; border-radius: var(--radius-md); margin-top: 12px; display: flex; justify-content: space-between; gap: 14px; align-items: center; }
+.favorite-card h3 { margin: 0; color: var(--color-primary); }
+.favorite-card small { color: var(--color-subtle); }
+.favorite-card button { width: auto; min-width: 100px; margin-top: 0; }

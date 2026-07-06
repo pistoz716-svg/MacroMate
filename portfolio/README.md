@@ -4,7 +4,7 @@ This portfolio showcases practical software applications built around real-world
 
 ## Featured Projects
 
-### MacroMate
+### MacroMe
 A nutrition and meal planning platform that helps users calculate macros, generate meals, save meal plans, and create grocery lists.
 
 **Focus Areas:**  

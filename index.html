@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>MacroMate</title>
+  <title>MacroMe | Personal Nutrition Intelligence</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
   <header class="app-header">
-    <h1>MacroMate</h1>
+    <h1>MacroMe</h1>
     <p>Your personal nutrition operating system.</p>
   </header>
 
@@ -27,7 +27,6 @@
   <main class="container">
 
     <section id="dashboardPage" class="page active-page">
-
       <section class="dashboard-v3-hero">
         <div class="dashboard-welcome">
           <p class="eyebrow">Today’s Mission</p>
@@ -50,35 +49,11 @@
       </section>
 
       <section class="dashboard-kpi-grid">
-        <div class="kpi-card">
-          <span>Calories</span>
-          <strong id="dashCalories">0</strong>
-          <small>Daily target</small>
-        </div>
-
-        <div class="kpi-card">
-          <span>Protein</span>
-          <strong id="dashProtein">0g</strong>
-          <small>Muscle support</small>
-        </div>
-
-        <div class="kpi-card">
-          <span>Carbs</span>
-          <strong id="dashCarbs">0g</strong>
-          <small>Training fuel</small>
-        </div>
-
-        <div class="kpi-card">
-          <span>Fat</span>
-          <strong id="dashFat">0g</strong>
-          <small>Hormone support</small>
-        </div>
-
-        <div class="kpi-card">
-          <span>Water</span>
-          <strong id="waterCount">0 / 8</strong>
-          <small>Glasses today</small>
-        </div>
+        <div class="kpi-card"><span>Calories</span><strong id="dashCalories">0</strong><small>Daily target</small></div>
+        <div class="kpi-card"><span>Protein</span><strong id="dashProtein">0g</strong><small>Muscle support</small></div>
+        <div class="kpi-card"><span>Carbs</span><strong id="dashCarbs">0g</strong><small>Training fuel</small></div>
+        <div class="kpi-card"><span>Fat</span><strong id="dashFat">0g</strong><small>Hormone support</small></div>
+        <div class="kpi-card"><span>Water</span><strong id="waterCount">0 / 8</strong><small>Glasses today</small></div>
       </section>
 
       <section class="card">
@@ -86,33 +61,23 @@
 
         <div class="quick-action-grid">
           <button type="button" class="quick-action-card jump-btn" data-page="mealsPage">
-            <span>🍳</span>
-            <strong>Generate Meals</strong>
-            <small>Build today’s plan</small>
+            <span>🍳</span><strong>Generate Meals</strong><small>Build today’s plan</small>
           </button>
 
           <button type="button" class="quick-action-card jump-btn" data-page="recipeLibraryPage">
-            <span>📚</span>
-            <strong>Recipe Library</strong>
-            <small>Browse recipes</small>
+            <span>📚</span><strong>Recipe Library</strong><small>Browse recipes</small>
           </button>
 
           <button type="button" class="quick-action-card jump-btn" data-page="groceryPage">
-            <span>🛒</span>
-            <strong>Groceries</strong>
-            <small>Shop by plan</small>
+            <span>🛒</span><strong>Groceries</strong><small>Shop by plan</small>
           </button>
 
           <button type="button" class="quick-action-card">
-            <span>🥫</span>
-            <strong>Pantry</strong>
-            <small>Coming soon</small>
+            <span>🥫</span><strong>Pantry</strong><small>Coming soon</small>
           </button>
 
           <button type="button" class="quick-action-card">
-            <span>📈</span>
-            <strong>Progress</strong>
-            <small>Coming soon</small>
+            <span>📈</span><strong>Progress</strong><small>Coming soon</small>
           </button>
         </div>
       </section>
@@ -121,13 +86,8 @@
         <div class="card smart-coach-card">
           <p class="eyebrow">Smart Recommendation</p>
           <h2>You’re building consistency.</h2>
-          <p class="hint">
-            Generate a full-day plan, save your favorite meals, then create your grocery list.
-          </p>
-
-          <button type="button" class="jump-btn" data-page="mealsPage">
-            Generate Today’s Meals
-          </button>
+          <p class="hint">Generate a full-day plan, save your favorite meals, then create your grocery list.</p>
+          <button type="button" class="jump-btn" data-page="mealsPage">Generate Today’s Meals</button>
         </div>
 
         <div class="card water-card">
@@ -147,37 +107,10 @@
           <h2>Meal Timeline</h2>
 
           <div class="meal-timeline">
-            <div class="timeline-item complete">
-              <span>✓</span>
-              <div>
-                <strong>Breakfast</strong>
-                <small>Generate or save a breakfast meal</small>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <span>○</span>
-              <div>
-                <strong>Lunch</strong>
-                <small>Plan your midday fuel</small>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <span>○</span>
-              <div>
-                <strong>Snack</strong>
-                <small>Keep macros balanced</small>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <span>○</span>
-              <div>
-                <strong>Dinner</strong>
-                <small>Finish strong</small>
-              </div>
-            </div>
+            <div class="timeline-item complete"><span>✓</span><div><strong>Breakfast</strong><small>Generate or save a breakfast meal</small></div></div>
+            <div class="timeline-item"><span>○</span><div><strong>Lunch</strong><small>Plan your midday fuel</small></div></div>
+            <div class="timeline-item"><span>○</span><div><strong>Snack</strong><small>Keep macros balanced</small></div></div>
+            <div class="timeline-item"><span>○</span><div><strong>Dinner</strong><small>Finish strong</small></div></div>
           </div>
         </div>
 
@@ -197,7 +130,6 @@
           <p class="hint">Demo data for now. Progress tracking comes next.</p>
         </div>
       </section>
-
     </section>
 
     <section id="goalsPage" class="page">
@@ -236,7 +168,6 @@
 
       <section class="card">
         <h2>Daily Macro Targets</h2>
-
         <div class="macro-grid">
           <div><h3 id="calories">0</h3><p>Calories</p></div>
           <div><h3 id="protein">0g</h3><p>Protein</p></div>
@@ -255,13 +186,11 @@
         <input id="servings" type="number" value="1" min="0.25" step="0.25" />
 
         <button id="addFoodBtn" type="button">Add Food</button>
-
         <ul id="mealList"></ul>
       </section>
 
       <section class="card">
         <h2>Remaining Macros</h2>
-
         <div class="macro-grid">
           <div><h3 id="remainingCalories">0</h3><p>Calories Left</p></div>
           <div><h3 id="remainingProtein">0g</h3><p>Protein Left</p></div>
@@ -274,9 +203,7 @@
     <section id="mealsPage" class="page">
       <section class="card">
         <h2>Generate A Meal Plan</h2>
-        <p class="hint">
-          Generate one meal, a full day, or a multi-day plan with grocery support.
-        </p>
+        <p class="hint">Generate one meal, a full day, or a multi-day plan with grocery support.</p>
 
         <div class="meal-buttons">
           <button id="generateBreakfastBtn" type="button">Breakfast</button>
@@ -295,19 +222,14 @@
         </select>
 
         <button id="generateMultiDayPlanBtn" type="button">Generate Multi-Day Plan</button>
-
         <div id="mealPlan"></div>
       </section>
 
       <section class="card">
         <div class="saved-plan-box">
           <h3>Today's Saved Meal Plan</h3>
-
           <div id="savedMeals"></div>
-
-          <div id="savedTotals" class="day-total-box">
-            No meals saved yet.
-          </div>
+          <div id="savedTotals" class="day-total-box">No meals saved yet.</div>
 
           <div class="saved-action-buttons">
             <button id="generateGroceryListBtn" type="button">Generate Grocery List</button>
@@ -320,20 +242,15 @@
     <section id="recipeLibraryPage" class="page">
       <section class="card">
         <h2>Recipe Library</h2>
-        <p class="hint">
-          Browse every recipe in MacroMate. Search, filter, view details, and save favorites.
-        </p>
+        <p class="hint">Browse every recipe in MacroMe. Search, filter, view details, and save favorites.</p>
 
         <input id="recipeSearch" type="text" placeholder="Search recipes..." />
-
         <div id="recipeCategoryFilters" class="recipe-filter-container"></div>
-
         <div id="recipeLibraryResults" class="recipe-library-grid"></div>
       </section>
 
       <section class="card">
         <h2>Recipe Details</h2>
-
         <div id="recipeDetail">
           <div class="empty-state">
             <h3>Select a Recipe</h3>
@@ -346,12 +263,8 @@
     <section id="groceryPage" class="page">
       <section class="card">
         <h2>Grocery List</h2>
-        <p class="hint">
-          Save meals first, then generate a grocery list that supports your macro goals.
-        </p>
-
+        <p class="hint">Save meals first, then generate a grocery list that supports your macro goals.</p>
         <button id="generateGroceryListBtnAlt" type="button">Generate Grocery List</button>
-
         <div id="groceryList"></div>
       </section>
     </section>
@@ -359,10 +272,7 @@
     <section id="favoritesPage" class="page">
       <section class="card">
         <h2>Favorite Recipes</h2>
-        <p class="hint">
-          Save your favorite recipes for quick access.
-        </p>
-
+        <p class="hint">Save your favorite recipes for quick access.</p>
         <div id="favoriteRecipes"></div>
       </section>
     </section>
@@ -370,9 +280,7 @@
     <section id="profilePage" class="page">
       <section class="card">
         <h2>Profile / Login</h2>
-        <p class="hint">
-          Local profile storage is active. Firebase login will allow users to sync meals and goals across devices.
-        </p>
+        <p class="hint">Local profile storage is active. Firebase login will allow users to sync meals and goals across devices.</p>
 
         <label for="profileName">Name</label>
         <input id="profileName" type="text" placeholder="Enter your name" />
@@ -387,7 +295,7 @@
   </main>
 
   <footer>
-    <p>MacroMate &copy; 2026</p>
+    <p>MacroMe &copy; 2026</p>
   </footer>
 
   <script src="data/foods.js"></script>

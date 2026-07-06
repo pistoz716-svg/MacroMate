@@ -1,0 +1,30 @@
+.app-header {
+  text-align: center;
+  padding: 32px 16px;
+  background: linear-gradient(135deg, rgba(40, 199, 111, 0.95), rgba(0, 207, 232, 0.88)), var(--color-dark);
+  color: var(--color-dark);
+}
+.app-header h1 { margin: 0; font-size: 42px; }
+.app-header p { margin-top: 8px; font-size: 16px; }
+.app-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 12px;
+  background: rgba(16, 19, 26, 0.96);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(12px);
+}
+.container {
+  width: 92%;
+  max-width: 1100px;
+  margin: 24px auto;
+  display: grid;
+  gap: 20px;
+}
+.page { display: none; gap: 20px; }
+.page.active-page { display: grid; }
+footer { text-align: center; padding: 20px; color: var(--color-subtle); }
